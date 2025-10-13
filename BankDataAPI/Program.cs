@@ -1,3 +1,5 @@
+﻿using BankDataAPI.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,5 +21,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+var created = DBManager.CreateTable();
+DBManager.SeedTestUsers();
 
 app.Run();
