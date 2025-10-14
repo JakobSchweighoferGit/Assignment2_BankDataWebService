@@ -20,7 +20,6 @@ namespace PresentationLayerAPI.Controllers
             {
                 var handle = Request.Cookies["Handle"];
                 var role = Request.Cookies["Admin"];
-                Console.WriteLine(role);
 
                 if (role == "True")
                 {

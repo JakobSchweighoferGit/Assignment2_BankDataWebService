@@ -4,12 +4,6 @@
 // Write your JavaScript code.
 function loadView(status) {
     var apiUrl = '/api/login/defaultview';
-    if (status === "authview")
-        apiUrl = '/api/login/authview';
-    if (status === "error")
-        apiUrl = '/api/login/error';
-    if (status === "about")
-        apiUrl = '/api/about/view';
     if (status === "logout")
         apiUrl = '/api/logout';
 
@@ -25,9 +19,9 @@ function loadView(status) {
         .then(data => {
             // Handle the data from the API
             document.getElementById('main').innerHTML = data;
-            if (status === "logout") {
-                document.getElementById('LogoutButton').style.display = "none";
-            }
+            //if (status === "logout") {
+            //    document.getElementById('LogoutButton').style.display = "none";
+            //}
         })
         .catch(error => {
             // Handle any errors that occurred during the fetch
@@ -51,7 +45,10 @@ function performAuth() {
     })
         .then(r => r.text())                  
         .then(html => {
+            //document.getElementById('LogoutButton').style.display = "block";
             document.getElementById('main').innerHTML = html;
         })
         .catch(err => console.error('Error:', err));
 }
+
+
