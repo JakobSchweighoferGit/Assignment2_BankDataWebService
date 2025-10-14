@@ -16,6 +16,21 @@ namespace PresentationLayerAPI.Controllers
         [HttpGet("defaultview")]
         public IActionResult GetDefaultView()
         {
+            if (Request.Cookies.ContainsKey("SessionID"))
+            {
+                var handle = Request.Cookies["Handle"];
+                var role = Request.Cookies["Admin"];
+                Console.WriteLine(role);
+
+                if (role == "True")
+                {
+                    return PartialView("~/Views/Admin/AdminDashboard.cshtml");
+                }
+                else
+                {
+                    return PartialView("~/Views/User/UserDefaultView.cshtml");
+                }
+            }
             return PartialView("LoginDefaultView");
         }
 
@@ -32,15 +47,21 @@ namespace PresentationLayerAPI.Controllers
             {
                 return PartialView("LoginErrorView");
             }
-            else if (loginResponse.Admin == true && loginResponse.Success == true)
+            else if (loginResponse.Success == true)
             {
-                return PartialView("~/Views/Admin/AdminDefaultView.cshtml");
+                Response.Cookies.Append("SessionID", Guid.NewGuid().ToString());
+                Response.Cookies.Append("Handle", user.Handle);
+                Response.Cookies.Append("Admin", loginResponse.Admin.ToString());
+                if (loginResponse.Admin == true)
+                {
+                    return PartialView("~/Views/Admin/AdminDashboard.cshtml");
+                }
+                else
+                {
+                    return PartialView("~/Views/User/UserDefaultView.cshtml");
+                }               
             }
-            else if (loginResponse.Admin == false && loginResponse.Success == true)
-            {
-                return PartialView("~/Views/User/UserDefaultView.cshtml");
-            }
-            return PartialView("LoginERrorView");
+            return PartialView("LoginErrorView");
         }
     }
 }
