@@ -1221,9 +1221,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\BankDataAPI.csproj",
-      "projectName": "BankDataAPI",
-      "projectPath": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\BankDataAPI.csproj",
+      "projectUniqueName": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\BusinessLayerAPI.csproj",
+      "projectName": "BusinessLayerAPI",
+      "projectPath": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\BusinessLayerAPI.csproj",
       "packagesPath": "C:\\Users\\Jakob S\\.nuget\\packages\\",
       "outputPath": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\obj\\",
       "projectStyle": "PackageReference",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iQjjndlx/sI=",
+  "dgSpecHash": "xgx4L8p0kns=",
   "success": true,
-  "projectFilePath": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\BankDataAPI.csproj",
+  "projectFilePath": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\BusinessLayerAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jakob S\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Jakob S\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

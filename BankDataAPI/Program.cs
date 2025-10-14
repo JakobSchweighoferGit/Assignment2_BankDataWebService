@@ -22,7 +22,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-var created = DBManager.CreateTable();
-DBManager.SeedTestUsers();
+DatabaseIntegration.CreateTable();
+DataSeeding.SeedTestUsers();
 
 app.Run();

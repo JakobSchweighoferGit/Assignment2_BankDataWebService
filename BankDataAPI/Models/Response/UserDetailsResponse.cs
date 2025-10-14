@@ -1,6 +1,6 @@
-﻿namespace BankDataAPI.Models
+﻿namespace BusinessLayerAPI.Models.Response
 {
-    public class UserDetails
+    public class UserDetailsResponse
     {
         public int UserID { get; set; }             
         public string FirstName { get; set; } = "";
@@ -11,7 +11,7 @@
         public string Phone { get; set; }
         public string PicturePath { get; set; }
         public string Handle { get; set; }  
-        public Boolean Admin { get; set; }
+        public bool Admin { get; set; }
 
     }
 }
