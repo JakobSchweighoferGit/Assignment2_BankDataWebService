@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model PresentationLayerAPI.Models.Request.GetUserInformationResponse
+
+<div data-authenticated="true" class="admin-profile">
+    <h2>Admin Profile</h2>
+
+    <div class="grid" style="display:grid;gap:12px;max-width:520px;">
+
+        <label>
+            First name
+            <input id="ap_handle" value="@Model.Handle" />
+        </label>
+
+        <label>
+            First name
+            <input id="ap_firstName" value="@Model.FirstName" />
+        </label>
+
+        <label>
+            Last name
+            <input id="ap_lastName" value="@Model.LastName" />
+        </label>
+
+        <label>
+            Email
+            <input id="ap_email" type="email" value="@Model.Email" />
+        </label>
+
+        <label>
+            Phone
+            <input id="ap_phone" type="tel" value="@Model.Phone" />
+        </label>
+
+        <label>
+            Address
+            <input id="ap_address" value="@Model.Address" />
+        </label>
+
+        <label>
+            Profile picture (URL)
+            <input id="ap_picture" value="@Model.PicturePath" />
+        </label>
+
+        <details style="margin-top:4px;">
+            <summary>Change password</summary>
+            <label style="display:block;margin-top:8px;">
+                New password
+                <input id="ap_newPassword" type="password" placeholder="Enter new password" />
+            </label>
+            <label style="display:block;margin-top:8px;">
+                Confirm new password
+                <input id="ap_confirmPassword" type="password" placeholder="Repeat new password" />
+            </label>
+        </details>
+
+        <div style="margin-top:12px;">
+            <button type="button" id="ap_updateBtn" onclick="updateAdminProfile()">Update</button>
+            <button type="button" onclick="loadView('admin-dashboard')" style="margin-left:8px;">Back</button>
+        </div>
+    </div>
+</div>

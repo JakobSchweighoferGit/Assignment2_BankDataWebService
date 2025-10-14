@@ -16,7 +16,7 @@ namespace BankDataAPI.Controllers
         {
             try
             {
-                var foundUser = UserProfileManagment.DataGetUserByHandle(user.Handle);
+                var foundUser = UserProfileManagement.DataGetUserByHandle(user.Handle);
                 //Console.WriteLine("Wir haben den User: " + foundUser.Handle);
                 if (foundUser == null)
                     return Unauthorized(new UserLoginDataResponse {Handle = "", Admin = false, Success = false, Message = "User not found" });
