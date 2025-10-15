@@ -1,25 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{5A15DC4B-E616-4355-A46B-05973D66D1D4}|BusinessLayerAPI.csproj|d:\\a_fh_joanneum\\fh_ws_5\\distributedcomputing\\assignment_2\\assignment2_bankdatawebservice\\bankdataapi\\data\\userprofilemanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5A15DC4B-E616-4355-A46B-05973D66D1D4}|BusinessLayerAPI.csproj|solutionrelative:data\\userprofilemanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{440E3009-7796-409C-8473-AB4DD9C4B25C}|..\\PresentationLayerAPI\\PresentationLayerAPI.csproj|d:\\a_fh_joanneum\\fh_ws_5\\distributedcomputing\\assignment_2\\assignment2_bankdatawebservice\\presentationlayerapi\\models\\request\\edituserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5A15DC4B-E616-4355-A46B-05973D66D1D4}|BusinessLayerAPI.csproj|d:\\a_fh_joanneum\\fh_ws_5\\distributedcomputing\\assignment_2\\assignment2_bankdatawebservice\\bankdataapi\\controllers\\edituserdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5A15DC4B-E616-4355-A46B-05973D66D1D4}|BusinessLayerAPI.csproj|solutionrelative:controllers\\edituserdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{440E3009-7796-409C-8473-AB4DD9C4B25C}|..\\PresentationLayerAPI\\PresentationLayerAPI.csproj|d:\\a_fh_joanneum\\fh_ws_5\\distributedcomputing\\assignment_2\\assignment2_bankdatawebservice\\presentationlayerapi\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{440E3009-7796-409C-8473-AB4DD9C4B25C}|..\\PresentationLayerAPI\\PresentationLayerAPI.csproj|d:\\a_fh_joanneum\\fh_ws_5\\distributedcomputing\\assignment_2\\assignment2_bankdatawebservice\\presentationlayerapi\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -27,76 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EditUserRequest.cs",
-              "DocumentMoniker": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\PresentationLayerAPI\\Models\\Request\\EditUserRequest.cs",
-              "RelativeDocumentMoniker": "..\\PresentationLayerAPI\\Models\\Request\\EditUserRequest.cs",
-              "ToolTip": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\PresentationLayerAPI\\Models\\Request\\EditUserRequest.cs",
-              "RelativeToolTip": "..\\PresentationLayerAPI\\Models\\Request\\EditUserRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T14:26:53.036Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "site.js",
-              "DocumentMoniker": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\PresentationLayerAPI\\wwwroot\\js\\site.js",
-              "RelativeDocumentMoniker": "..\\PresentationLayerAPI\\wwwroot\\js\\site.js",
-              "ToolTip": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\PresentationLayerAPI\\wwwroot\\js\\site.js",
-              "RelativeToolTip": "..\\PresentationLayerAPI\\wwwroot\\js\\site.js",
-              "ViewState": "AgIAADcAAAAAAAAAAAAQwEAAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-10-14T14:18:28.456Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\PresentationLayerAPI\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "..\\PresentationLayerAPI\\Controllers\\AdminController.cs",
-              "ToolTip": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\PresentationLayerAPI\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "..\\PresentationLayerAPI\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBoAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T14:19:05.049Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserProfileManagement.cs",
-              "DocumentMoniker": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\Data\\UserProfileManagement.cs",
-              "RelativeDocumentMoniker": "Data\\UserProfileManagement.cs",
-              "ToolTip": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\Data\\UserProfileManagement.cs*",
-              "RelativeToolTip": "Data\\UserProfileManagement.cs*",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAYwE4AAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T14:14:01.371Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EditUserDetailsController.cs",
-              "DocumentMoniker": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\Controllers\\EditUserDetailsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\EditUserDetailsController.cs",
-              "ToolTip": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\Controllers\\EditUserDetailsController.cs",
-              "RelativeToolTip": "Controllers\\EditUserDetailsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T14:13:40.877Z",
-              "EditorCaption": ""
             }
           ]
         }
