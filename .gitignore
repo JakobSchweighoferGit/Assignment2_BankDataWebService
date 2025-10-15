@@ -9,3 +9,5 @@
 *.db-wal
 *.db-shm
 /BankDataAPI/obj/Debug/net6.0/rpswa.dswa.cache.json
+/BankDataAPI/.vs/BankDataAPI/v17/.suo
+/BankDataAPI/.vs/BankDataAPI/v17/DocumentLayout.backup.json
