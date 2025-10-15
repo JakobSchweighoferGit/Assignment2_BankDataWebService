@@ -8,3 +8,4 @@
 *.db
 *.db-wal
 *.db-shm
+/BankDataAPI/obj/Debug/net6.0/rpswa.dswa.cache.json
