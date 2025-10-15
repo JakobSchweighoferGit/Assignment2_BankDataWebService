@@ -5,8 +5,8 @@
 }
 @model PresentationLayerAPI.Models.Request.GetUserInformationResponse
 
-<div data-authenticated="true" class="admin-profile">
-    <h2>Admin Profile</h2>
+<div>
+    <h2>Edit User Profile</h2>
 
     <div class="grid" style="display:grid;gap:12px;max-width:520px;">
 
@@ -50,9 +50,11 @@
             <input id="ap_newPassword" value="@Model.Password" />
         </label>
 
+        <input type="hidden" id="ap_SearchString" value="" />
+
         <div style="margin-top:12px;">
-            <button type="button" id="ap_updateBtn" onclick="updateAdminProfile()">Update</button>
-            <button type="button" onclick="loadView('admin-dashboard')" style="margin-left:8px;">Back</button>
+            <button type="button" id="ap_updateBtn" onclick="updateUserProfile()">Update</button>
+            <button type="button" id="UserManagmentnButton" onclick="searchForUserWithSearchString()">Back</button>
         </div>
     </div>
 </div>

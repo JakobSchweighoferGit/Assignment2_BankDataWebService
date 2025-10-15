@@ -1,7 +1,11 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\BankDataAPI\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{440E3009-7796-409C-8473-AB4DD9C4B25C}|..\\PresentationLayerAPI\\PresentationLayerAPI.csproj|d:\\a_fh_joanneum\\fh_ws_5\\distributedcomputing\\assignment_2\\assignment2_bankdatawebservice\\presentationlayerapi\\views\\admin\\adminedituserinformation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +13,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminEditUserInformation.cshtml",
+              "DocumentMoniker": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\PresentationLayerAPI\\Views\\Admin\\AdminEditUserInformation.cshtml",
+              "RelativeDocumentMoniker": "..\\PresentationLayerAPI\\Views\\Admin\\AdminEditUserInformation.cshtml",
+              "ToolTip": "D:\\a_FH_Joanneum\\FH_WS_5\\DistributedComputing\\Assignment_2\\Assignment2_BankDataWebService\\PresentationLayerAPI\\Views\\Admin\\AdminEditUserInformation.cshtml",
+              "RelativeToolTip": "..\\PresentationLayerAPI\\Views\\Admin\\AdminEditUserInformation.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAC0AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-15T06:57:25.674Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
