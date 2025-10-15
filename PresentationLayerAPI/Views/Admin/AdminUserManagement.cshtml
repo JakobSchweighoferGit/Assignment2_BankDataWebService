@@ -1,0 +1,56 @@
+﻿@using PresentationLayerAPI.Models.Response
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h2>Admin User Managment</h2>
+
+@model List<UserSearchInformation>
+
+@{
+    var userList = Model ?? new List<UserSearchInformation>();
+}
+
+
+
+<div style="margin-top:12px;">
+    <label>
+        SearchString
+        <input id="ap_SearchString" value="" />
+    </label>
+    <button type="button" id="UserManagmentnButton" onclick="searchForUserWithSearchString()">Search</button>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Handle</th>
+            <th>Email</th>
+            <th>AccountNumber</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (userList.Count == 0)
+        {
+            <tr><td colspan="3">No result</td></tr>
+        }
+        else
+        {
+            foreach (var u in userList)
+            {
+                <tr>
+                    <td>@u.Handle</td>
+                    <td>@u.Email</td>
+                    <td>@u.AccNumber </td>
+                    <td> <button type="button" onclick="openEditUserPage('@u.Handle')">Edit</button> </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<div style="margin-top:12px;">
+    <button type="button" onclick="loadView('admin-dashboard')" style="margin-left:8px;">Back</button>
+</div>

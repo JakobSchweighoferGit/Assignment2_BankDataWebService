@@ -1,7 +1,7 @@
-# VS/IDE Ordner überall (auch verschachtelt!)
+# VS/IDE Ordner �berall (auch verschachtelt!)
 **/.vs/
 
-# Build-Ordner überall
+# Build-Ordner �berall
 **/bin/
 **/obj/
 

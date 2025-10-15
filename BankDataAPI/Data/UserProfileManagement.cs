@@ -1,5 +1,6 @@
 ﻿using System.Data.SQLite;
 using System.Reflection.Metadata;
+using BusinessLayerAPI.Models;
 using BusinessLayerAPI.Models.Request;
 using BusinessLayerAPI.Models.Response;
 
@@ -81,6 +82,46 @@ namespace BankDataAPI.Data
             int rowsAffected = command.ExecuteNonQuery();
 
             return rowsAffected > 0;
+        }
+
+        public static List<UserSearchInformation> GetUsersBySearch(string? searchTerm)
+        {
+            var result = new List<UserSearchInformation>();
+
+            using var connection = new SQLiteConnection(connectionString);
+            connection.Open();
+
+            using var command = connection.CreateCommand();
+            command.CommandText = @"
+            SELECT 
+                u.Handle,
+                u.Email,
+                a.AccountNumber
+            FROM UserTable u
+            LEFT JOIN AccountTable a ON a.UserID = u.UserID
+            WHERE
+                (@term IS NULL) 
+                OR u.Handle       LIKE '%' || @term || '%'
+                OR u.Email        LIKE '%' || @term || '%'
+                OR a.AccountNumber LIKE '%' || @term || '%'
+            ORDER BY u.Handle;";
+
+            // Wenn searchTerm null/leer -> als NULL übergeben => gibt alle zurück
+            var term = string.IsNullOrWhiteSpace(searchTerm) ? null : searchTerm;
+            command.Parameters.AddWithValue("@term", (object?)term ?? DBNull.Value);
+
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                result.Add(new UserSearchInformation
+                {
+                    Handle = reader["Handle"]?.ToString() ?? "",
+                    Email = reader["Email"]?.ToString() ?? "",
+                    AccNumber = reader["AccountNumber"]?.ToString() ?? ""
+                });
+            }
+
+            return result;
         }
     }
 }

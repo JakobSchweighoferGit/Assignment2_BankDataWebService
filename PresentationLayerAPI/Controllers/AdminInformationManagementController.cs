@@ -10,7 +10,7 @@ namespace PresentationLayerAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminController : Controller
+    public class AdminInformationManagementController : Controller
     {
         [HttpGet("adminInformation")]
         public IActionResult GetAdmininformation()
@@ -24,7 +24,7 @@ namespace PresentationLayerAPI.Controllers
                 request.AddJsonBody(new GetUserInformationRequest { Handle = handle });
                 RestResponse response = client.Execute(request);
                 GetUserInformationResponse userInformation = JsonConvert.DeserializeObject<GetUserInformationResponse>(response.Content);
-                return PartialView("AdminInformation", userInformation);
+                return PartialView("~/Views/Admin/AdminInformation.cshtml", userInformation);
 
             }
             catch (Exception ex)
@@ -33,7 +33,7 @@ namespace PresentationLayerAPI.Controllers
             }
         }
 
-        [HttpPost("editUser")]
+        [HttpPost("editAdmin")]
         public IActionResult EditUser([FromBody] EditUserRequest payload)
         {
             try
@@ -49,7 +49,6 @@ namespace PresentationLayerAPI.Controllers
 
                 if (!userInformation.Success)
                 {
-                    Console.WriteLine("Sama da");
                     return BadRequest(new { success = false, message = "Update failed" });
                 }
 

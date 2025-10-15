@@ -7,9 +7,8 @@ function loadView(status) {
     if (status === "logout")
         apiUrl = '/api/logout';
     if (status === "adminInformation")
-        apiUrl = '/api/admin/adminInformation';
+        apiUrl = '/api/AdminInformationManagement/adminInformation';
 
-    console.log("Hello " + apiUrl);
 
     fetch(apiUrl)
         .then(response => {
@@ -19,14 +18,9 @@ function loadView(status) {
             return response.text();
         })
         .then(data => {
-            // Handle the data from the API
             document.getElementById('main').innerHTML = data;
-            //if (status === "logout") {
-            //    document.getElementById('LogoutButton').style.display = "none";
-            //}
         })
         .catch(error => {
-            // Handle any errors that occurred during the fetch
             console.error('Fetch error:', error);
         });
 
@@ -65,12 +59,8 @@ function updateAdminProfile() {
         Handle: document.getElementById('ap_handle').value
     };
 
-    //if (payload.newPassword && payload.newPassword !== payload.confirmPassword) {
-    //    alert("Passwords do not match.");
-    //    return;
-    //}
 
-    fetch('/api/admin/editUser', {
+    fetch('/api/AdminInformationManagement/editAdmin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -87,6 +77,80 @@ function updateAdminProfile() {
             if (data.success) {
                 alert("Profile successfully updated!");
                 loadView('adminInformation');
+            } else {
+                alert("Update failed: " + (data.message || "unknown error"));
+            }
+        })
+        .catch(error => {
+            console.error('Error updating profile:', error);
+            alert("An error occurred while updating your profile.");
+        });
+}
+
+
+
+function searchForUserWithSearchString() {
+    const data = {
+        SearchString: document.getElementById('ap_SearchString').value,
+    };
+
+    fetch('/api/AdminUserManagement/adminUserManagmentListInformation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('main').innerHTML = html;
+        })
+}
+
+function openEditUserPage(handle) {
+    const data = {
+        handle
+    };
+
+    fetch('/api/AdminUserManagement/adminUserEditInformation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('main').innerHTML = html;
+        })
+}
+
+
+function updateUserProfile() {
+    const data = {
+        FirstName: document.getElementById('ap_firstName').value.trim(),
+        LastName: document.getElementById('ap_lastName').value.trim(),
+        Email: document.getElementById('ap_email').value.trim(),
+        Phone: document.getElementById('ap_phone').value.trim(),
+        Address: document.getElementById('ap_address').value.trim(),
+        PicturePath: document.getElementById('ap_picture').value.trim(),
+        Password: document.getElementById('ap_newPassword').value,
+        Handle: document.getElementById('ap_handle').value
+    };
+
+
+    fetch('/api/AdminUserManagement/adminEditUser', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                alert("Profile successfully updated!");
             } else {
                 alert("Update failed: " + (data.message || "unknown error"));
             }
