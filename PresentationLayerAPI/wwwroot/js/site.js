@@ -10,7 +10,11 @@ function loadView(status) {
         apiUrl = '/api/AdminInformationManagement/adminInformation';
     if (status === "createUser")
         apiUrl = '/api/AdminCreateUSer/createUserView';
+    if (status === "createBankAccount")
+        apiUrl = '/api/AdminCreateBankAccount/createBankAccountView';
 
+
+    
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
@@ -191,6 +195,39 @@ function createUser() {
             if (d.success) {
                 alert('User created.');
                 loadView('createUser'); 
+            } else {
+                alert('Create failed: ' + (d.message || 'unknown error'));
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Network error');
+        });
+}
+
+function createBankAccount() {
+    const data = {
+        accountNumber: document.getElementById('ca_number').value.trim(),
+        balance: parseInt(document.getElementById('ca_balance').value, 10) || 0,
+        handle: document.getElementById('ca_handle').value.trim(),
+        active: document.getElementById('ca_active').value === 'true'
+    };
+
+    if (!data.accountNumber || !data.handle) {
+        alert('Account number and handle are required.');
+        return;
+    }
+
+    fetch('/api/adminCreateBankAccount/adminCreateBankAccountWithData', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+        .then(r => r.json())
+        .then(d => {
+            if (d.success) {
+                alert('Account created.');
+                loadView('admin-dashboard');
             } else {
                 alert('Create failed: ' + (d.message || 'unknown error'));
             }

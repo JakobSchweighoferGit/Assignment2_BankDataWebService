@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h2>Create New Bank Account</h2>
+
+<div style="display:grid;gap:10px;max-width:520px;">
+    <label>Account number <input id="ca_number" /></label>
+    <label>Initial balance <input id="ca_balance" type="number" value="0" /></label>
+    <label>User handle <input id="ca_handle" placeholder="" /></label>
+    <label>
+        Active?
+        <select id="ca_active">
+            <option value="true" selected>Yes</option>
+            <option value="false">No</option>
+        </select>
+    </label>
+
+    <div style="margin-top:8px;">
+        <button type="button" onclick="createBankAccount()">Create</button>
+        <button type="button" onclick="loadView()" style="margin-left:8px;">Back</button>
+    </div>
+</div>
+</div>
