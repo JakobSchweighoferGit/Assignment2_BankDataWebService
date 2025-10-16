@@ -38,7 +38,7 @@ namespace PresentationLayerAPI.Controllers
 
 
         [HttpPost("adminUserEditInformation")]
-        public IActionResult GetAdmininformation([FromBody] GetUserInformationRequest data)
+        public IActionResult GetUserinformation([FromBody] GetUserInformationRequest data)
         {
             try
             {

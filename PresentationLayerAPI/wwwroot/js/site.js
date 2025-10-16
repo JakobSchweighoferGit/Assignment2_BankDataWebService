@@ -237,3 +237,19 @@ function createBankAccount() {
             alert('Network error');
         });
 }
+function
+    openEditBankAccount(AccNumber) {
+    const data = {
+        AccNumber
+    };
+
+    fetch('/api/AdminBankAccountManagement/adminBankAccountEditInformation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('main').innerHTML = html;
+        })
+}

@@ -27,8 +27,9 @@
         <tr>
             <th>Handle</th>
             <th>Email</th>
+            <th>Edit User</th>
             <th>AccountNumber</th>
-            <th>Edit</th>
+            <th>Edit BankAccount</th>
         </tr>
     </thead>
     <tbody>
@@ -43,8 +44,9 @@
                 <tr>
                     <td>@u.Handle</td>
                     <td>@u.Email</td>
+                    <td> <button type="button" onclick="openEditUserPage('@u.Handle')">Edit User</button> </td>
                     <td>@u.AccNumber </td>
-                    <td> <button type="button" onclick="openEditUserPage('@u.Handle')">Edit</button> </td>
+                    <td> <button type="button" onclick="openEditBankAccount('@u.AccNumber')">Edit BankAccount</button> </td>
                 </tr>
             }
         }

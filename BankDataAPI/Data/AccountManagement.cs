@@ -30,5 +30,29 @@ namespace BusinessLayerAPI.Data
                 return false;
             }
         }
+
+        // Presentation Layer fertig!!!! Aber warum bei ID??? Das gut also Ändern
+        public static (int AccountID, string AccountNumber, int Balance, bool Active, int UserID)? GetAccountById(int id)
+        {
+            using var conn = new SQLiteConnection(connectionString);
+            conn.Open();
+
+            using var cmd = conn.CreateCommand();
+            cmd.CommandText = @"SELECT AccountID, AccountNumber, Balance, Active, UserID
+                            FROM AccountTable WHERE AccountID = @id LIMIT 1;";
+            cmd.Parameters.AddWithValue("@id", id);
+
+            using var r = cmd.ExecuteReader();
+            if (!r.Read()) return null;
+
+            return (
+                Convert.ToInt32(r["AccountID"]),
+                Convert.ToString(r["AccountNumber"]) ?? "",
+                Convert.ToInt32(r["Balance"]),
+                Convert.ToBoolean(r["Active"]),
+                Convert.ToInt32(r["UserID"])
+            );
+        }
+
     }
 }
