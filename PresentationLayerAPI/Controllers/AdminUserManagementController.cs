@@ -66,7 +66,7 @@ namespace PresentationLayerAPI.Controllers
                 var request = new RestRequest("/api/EditUser", Method.Post);
                 request.AddJsonBody(data);
                 RestResponse response = client.Execute(request);
-                EditUserResponse editResponse = JsonConvert.DeserializeObject<EditUserResponse>(response.Content);
+                SucessResponse editResponse = JsonConvert.DeserializeObject<SucessResponse>(response.Content);
 
                 if (!editResponse.Success)
                 {

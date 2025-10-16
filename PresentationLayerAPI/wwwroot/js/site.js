@@ -8,7 +8,8 @@ function loadView(status) {
         apiUrl = '/api/logout';
     if (status === "adminInformation")
         apiUrl = '/api/AdminInformationManagement/adminInformation';
-
+    if (status === "createUser")
+        apiUrl = '/api/AdminCreateUSer/createUserView';
 
     fetch(apiUrl)
         .then(response => {
@@ -158,5 +159,44 @@ function updateUserProfile() {
         .catch(error => {
             console.error('Error updating profile:', error);
             alert("An error occurred while updating your profile.");
+        });
+}
+
+function createUser() {
+    const data = {
+        handle: document.getElementById('cu_handle').value.trim(),
+        firstName: document.getElementById('cu_firstName').value.trim(),
+        lastName: document.getElementById('cu_lastName').value.trim(),
+        email: document.getElementById('cu_email').value.trim(),
+        password: document.getElementById('cu_password').value, 
+        address: document.getElementById('cu_address').value.trim(),
+        phone: document.getElementById('cu_phone').value.trim(),
+        picturePath: document.getElementById('cu_picturePath').value.trim(),
+        admin: document.getElementById('cu_admin').value === 'true'
+    };
+
+
+    if (!data.handle || !data.firstName || !data.lastName || !data.email || !data.password) {
+        alert('Handle, first name, last name, email and password are required.');
+        return;
+    }
+
+    fetch('/api/adminCreateUser/admincreatesUserWithData', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+        .then(r => r.json())
+        .then(d => {
+            if (d.success) {
+                alert('User created.');
+                loadView('createUser'); 
+            } else {
+                alert('Create failed: ' + (d.message || 'unknown error'));
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Network error');
         });
 }

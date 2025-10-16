@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h2>Create New User</h2>
+
+<div style="display:grid;gap:10px;max-width:520px;">
+    <label>Handle <input id="cu_handle" /></label>
+    <label>First name <input id="cu_firstName" /></label>
+    <label>Last name <input id="cu_lastName" /></label>
+    <label>Email <input id="cu_email" type="email" /></label>
+    <label>Password <input id="cu_password" type="password" /></label>
+    <label>Address <input id="cu_address" /></label>
+    <label>Phone <input id="cu_phone" /></label>
+    <label>Picture URL <input id="cu_picturePath" /></label>
+    <label>
+        Admin?
+        <select id="cu_admin">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+        </select>
+    </label>
+
+    <div style="margin-top:8px;">
+        <button type="button" onclick="createUser()">Create</button>
+        <button type="button" onclick="loadView('admin-dashboard')" style="margin-left:8px;">Back</button>
+    </div>
+</div>

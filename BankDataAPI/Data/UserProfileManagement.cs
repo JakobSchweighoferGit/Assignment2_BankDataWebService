@@ -123,5 +123,38 @@ namespace BankDataAPI.Data
 
             return result;
         }
+
+        public static bool InsertUser(CreateUserRequest req)
+        {
+            using var connection = new SQLiteConnection(connectionString);
+            connection.Open();
+
+            using var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+            INSERT INTO UserTable
+                (Handle, FirstName, LastName, Email, Password, Address, Phone, PicturePath, Admin)
+            VALUES
+                (@Handle, @FirstName, @LastName, @Email, @Password, @Address, @Phone, @PicturePath, @Admin);";
+
+            cmd.Parameters.AddWithValue("@Handle", req.Handle);
+            cmd.Parameters.AddWithValue("@FirstName", req.FirstName);
+            cmd.Parameters.AddWithValue("@LastName", req.LastName);
+            cmd.Parameters.AddWithValue("@Email", req.Email);
+            cmd.Parameters.AddWithValue("@Password", req.Password);   
+            cmd.Parameters.AddWithValue("@Address", req.Address ?? "");
+            cmd.Parameters.AddWithValue("@Phone", req.Phone ?? "");
+            cmd.Parameters.AddWithValue("@PicturePath", req.PicturePath ?? "");
+            cmd.Parameters.AddWithValue("@Admin", req.Admin ? 1 : 0);
+
+            try
+            {
+                return cmd.ExecuteNonQuery() > 0;
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine("InsertUser error: " + ex.Message);
+                return false;
+            }
+        }
     }
 }
