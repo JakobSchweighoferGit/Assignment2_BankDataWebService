@@ -93,36 +93,41 @@ namespace BankDataAPI.Data
 
             using var command = connection.CreateCommand();
             command.CommandText = @"
-            SELECT 
-                u.Handle,
-                u.Email,
-                a.AccountNumber
-            FROM UserTable u
-            LEFT JOIN AccountTable a ON a.UserID = u.UserID
-            WHERE
-                (@term IS NULL) 
-                OR u.Handle       LIKE '%' || @term || '%'
-                OR u.Email        LIKE '%' || @term || '%'
-                OR a.AccountNumber LIKE '%' || @term || '%'
-            ORDER BY u.Handle;";
+                    SELECT 
+                        u.Handle,
+                        u.Email,
+                        a.AccountNumber,
+                        a.AccountID
+                    FROM UserTable u
+                    LEFT JOIN AccountTable a ON a.UserID = u.UserID
+                    WHERE
+                        (@term IS NULL) 
+                        OR u.Handle       LIKE '%' || @term || '%'
+                        OR u.Email        LIKE '%' || @term || '%'
+                        OR a.AccountNumber LIKE '%' || @term || '%'
+                    ORDER BY u.Handle;";
 
-            // Wenn searchTerm null/leer -> als NULL übergeben => gibt alle zurück
             var term = string.IsNullOrWhiteSpace(searchTerm) ? null : searchTerm;
             command.Parameters.AddWithValue("@term", (object?)term ?? DBNull.Value);
 
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
+                var accountIdObj = reader["AccountID"];
+                int? accountId = accountIdObj == DBNull.Value ? null : Convert.ToInt32(accountIdObj);
+
                 result.Add(new UserSearchInformation
                 {
                     Handle = reader["Handle"]?.ToString() ?? "",
                     Email = reader["Email"]?.ToString() ?? "",
-                    AccNumber = reader["AccountNumber"]?.ToString() ?? ""
+                    AccNumber = reader["AccountNumber"]?.ToString() ?? "",
+                    AccountID = accountId
                 });
             }
 
             return result;
         }
+
 
         public static bool InsertUser(CreateUserRequest req)
         {

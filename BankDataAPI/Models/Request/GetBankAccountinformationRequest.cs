@@ -1,4 +1,4 @@
-﻿namespace PresentationLayerAPI.Models.Request
+﻿namespace BusinessLayerAPI.Models.Request
 {
     public class GetBankAccountinformationRequest
     {

@@ -3,4 +3,52 @@
 *@
 @{
 }
-<p>Edit BankAccount Information</p>
+@model PresentationLayerAPI.Models.Response.AccountDetailsResponse
+
+
+<h2>Edit Bank Account</h2>
+
+<div style="display:grid;gap:10px;max-width:520px;">
+
+    <label>
+        Account ID
+        <input id="ea_id" value="@Model.AccountID" readonly />
+    </label>
+
+    <label>
+        Account number
+        <input id="ea_number" value="@Model.AccountNumber" />
+    </label>
+
+    <label>
+        Balance (in cents)
+        <input id="ea_balance" type="number" value="@Model.Balance" />
+    </label>
+
+    <label>
+        User handle
+        <input id="ea_handle" value="@Model.Handle" />
+    </label>
+
+    <label>
+        Active
+        <select id="ea_active">
+            @if (Model.Active)
+            {
+                <option value="true" selected>Yes</option>
+                <option value="false">No</option>
+            }
+            else
+            {
+                <option value="true">Yes</option>
+                <option value="false" selected>No</option>
+            }
+        </select>
+    </label>
+
+    <div style="margin-top:8px;">
+        <button type="button" onclick="updateBankAccount()">Update</button>
+        <button type="button" id="UserManagmentnButton" onclick="searchForUserWithSearchString()">Back</button>
+        <input type="hidden" id="ap_SearchString" value="" />
+    </div>
+</div>

@@ -46,7 +46,6 @@ function performAuth() {
     })
         .then(r => r.text())                  
         .then(html => {
-            //document.getElementById('LogoutButton').style.display = "block";
             document.getElementById('main').innerHTML = html;
         })
         .catch(err => console.error('Error:', err));
@@ -237,19 +236,60 @@ function createBankAccount() {
             alert('Network error');
         });
 }
-function
-    openEditBankAccount(AccNumber) {
-    const data = {
-        AccNumber
-    };
+function openEditBankAccount(id) {
+    const accountId = Number(id);
+    if (!Number.isInteger(accountId) || accountId <= 0) {
+        console.error('Invalid AccountID:', id);
+        return;
+    }
+    const payload = { AccountID: accountId };
 
     fetch('/api/AdminBankAccountManagement/adminBankAccountEditInformation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(payload)
     })
-        .then(r => r.text())
-        .then(html => {
-            document.getElementById('main').innerHTML = html;
+        .then(r => {
+            if (!r.ok) throw new Error('Network error: ' + r.status);
+            return r.text();
         })
+        .then(html => { document.getElementById('main').innerHTML = html; })
+        .catch(err => console.error('Fetch error:', err));
+}
+
+function updateBankAccount() {
+    const payload = {
+        AccountID: Number(document.getElementById('ea_id').value),
+        AccountNumber: document.getElementById('ea_number').value.trim(),
+        Balance: Number(document.getElementById('ea_balance').value),
+        Handle: document.getElementById('ea_handle').value.trim(),
+        Active: document.getElementById('ea_active').value === 'true'
+    };
+
+    if (!payload.AccountID || payload.AccountID <= 0) {
+        alert('Invalid AccountID');
+        return;
+    }
+    if (!payload.Handle) {
+        alert('Handle cannot be empty');
+        return;
+    }
+
+    fetch('/api/AdminBankAccountManagement/adminBankAccountUpdate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+        .then(r => r.json())
+        .then(d => {
+            if (d.success) {
+                alert(d.message || 'Bank account updated');
+            } else {
+                alert(d.message || 'Update failed');
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Network error');
+        });
 }
