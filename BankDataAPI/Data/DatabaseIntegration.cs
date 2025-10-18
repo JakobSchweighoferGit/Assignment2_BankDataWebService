@@ -1,23 +1,36 @@
 ﻿using System.Data.SQLite;
 using BankDataAPI.Models;
+using System;
+using System.IO; 
 
 namespace BankDataAPI.Data
 {
     public class DatabaseIntegration
     {
-        private static string connectionString = "Data Source=mydatabase.db;Version=3;";
+        private static string GetDbPath()
+        {
+            const string dbFileName = "mydatabase.db";
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dbFileName);
+        }
+
+        private static string connectionString = $"Data Source={GetDbPath()};Version=3;";
 
         public static bool CreateTable()
         {
             try
             {
+                string dbPath = GetDbPath();
+                string directory = Path.GetDirectoryName(dbPath);
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+
                 using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                 {
                     connection.Open();
-                    // Create a new SQLite command to execute SQL
                     using (SQLiteCommand command = connection.CreateCommand())
                     {
-                        //Create UserTable
                         command.CommandText = @"
                         CREATE TABLE IF NOT EXISTS UserTable ( 
                             UserID        INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,7 +46,6 @@ namespace BankDataAPI.Data
                         )";
                         command.ExecuteNonQuery();
 
-                        //Create AccountTable
                         command.CommandText = @"
                         CREATE TABLE IF NOT EXISTS AccountTable (
                             AccountID     INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -46,7 +58,6 @@ namespace BankDataAPI.Data
                         )";
                         command.ExecuteNonQuery();
 
-                        //Create TransactionTable
                         command.CommandText = @"
                         CREATE TABLE IF NOT EXISTS TransactionTable (
                             TransactionID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -75,7 +86,7 @@ namespace BankDataAPI.Data
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                return false; // Create table failed
+                return false;
             }
         }
     }

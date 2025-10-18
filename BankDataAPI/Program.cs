@@ -7,7 +7,6 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -22,7 +21,14 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+DataSeeding.EmptyDatabase();
 DatabaseIntegration.CreateTable();
 DataSeeding.SeedTestUsers();
+DataSeeding.seedAccounts();
+DataSeeding.seedTransactions();
+DataSeeding.seedAdmin();
+
+
 
 app.Run();

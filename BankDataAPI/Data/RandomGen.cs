@@ -195,9 +195,8 @@ namespace BusinessLayerAPI.Data
         public static int GenIndex()
         {
 
-            Random random = Random.Shared;
 
-            int randomNumber = random.Next(0, 101);
+            int randomNumber = rnd.Next(0, 100);
 
             return randomNumber;
         }
@@ -209,7 +208,7 @@ namespace BusinessLayerAPI.Data
                 GenRandomFirstName() + "Handle", //handle
                 GenRandomFirstName(), //firstname
                 GenRandomLastName(), //lastname
-                GenRandomFirstName() + "@RealMail.com", //email
+                GenRandomFirstName() + rnd.Next(0, 100) + "@RealMail.com", //email
                 GenRandomLastName() + "123", //password
                 GenRandomAddress(), //address
                 GenRandomPhoneNum(), //phone

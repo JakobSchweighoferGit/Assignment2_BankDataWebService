@@ -12,6 +12,7 @@
         public string? PicturePath { get; set; } = "";
         public bool Admin { get; set; }
 
+        public CreateUserRequest() { }
         public CreateUserRequest(string handle, string firstName, string lastName, string email, string password, string address, string phone, string picturePath, bool admin)
         {
             Handle = handle;
