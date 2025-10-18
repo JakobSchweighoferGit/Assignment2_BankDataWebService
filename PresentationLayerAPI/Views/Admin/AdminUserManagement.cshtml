@@ -27,8 +27,10 @@
         <tr>
             <th>Handle</th>
             <th>Email</th>
+            <th>Edit User</th>
             <th>AccountNumber</th>
-            <th>Edit</th>
+            <th>AccountID</th>
+            <th>Edit BankAccount</th>
         </tr>
     </thead>
     <tbody>
@@ -43,8 +45,15 @@
                 <tr>
                     <td>@u.Handle</td>
                     <td>@u.Email</td>
+                    <td> <button type="button" onclick="openEditUserPage('@u.Handle')">Edit User</button> </td>
                     <td>@u.AccNumber </td>
-                    <td> <button type="button" onclick="openEditUserPage('@u.Handle')">Edit</button> </td>
+                    <td>@u.AccountID </td>
+                    <td>
+                        @if (u.AccountID.HasValue && u.AccountID > 0)
+                        {
+                            <button type="button" onclick="openEditBankAccount(@u.AccountID.Value)">Edit BankAccount</button>
+                        }
+                    </td>
                 </tr>
             }
         }

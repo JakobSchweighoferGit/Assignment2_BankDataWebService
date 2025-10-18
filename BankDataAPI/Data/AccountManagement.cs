@@ -1,4 +1,5 @@
 ﻿using System.Data.SQLite;
+using BusinessLayerAPI.Models.Request;
 
 namespace BusinessLayerAPI.Data
 {
@@ -31,38 +32,72 @@ namespace BusinessLayerAPI.Data
             }
         }
 
-
-        public static bool DeleteAccount(string accountNumber)
+        public static (int AccountID, string AccountNumber, int Balance, bool Active, int UserID, string Handle)? GetAccountById(int id)
         {
             using var conn = new SQLiteConnection(connectionString);
+            conn.Open();
 
-            const string sql = @"
-                DELETE FROM AccountTable
-                WHERE AccountNumber = @AccountNumberToDelete;
+            using var cmd = conn.CreateCommand();
+            cmd.CommandText = @"
+                SELECT 
+                    a.AccountID,
+                    a.AccountNumber,
+                    a.Balance,
+                    a.Active,
+                    a.UserID,
+                    u.Handle
+                FROM AccountTable a
+                INNER JOIN UserTable u ON u.UserID = a.UserID
+                WHERE a.AccountID = @id
+                LIMIT 1;";
+            cmd.Parameters.AddWithValue("@id", id);
+
+            using var r = cmd.ExecuteReader();
+            if (!r.Read()) return null;
+
+            return (
+                Convert.ToInt32(r["AccountID"]),
+                Convert.ToString(r["AccountNumber"]) ?? "",
+                Convert.ToInt32(r["Balance"]),
+                Convert.ToBoolean(r["Active"]),
+                Convert.ToInt32(r["UserID"]),
+                Convert.ToString(r["Handle"]) ?? ""
+            );
+        }
+
+        public static bool UpdateAccount(EditBankAccountRequest req)
+        {
+            using var conn = new SQLiteConnection(connectionString);
+            conn.Open();
+
+            using var cmd = conn.CreateCommand();
+            cmd.CommandText = @"
+                UPDATE AccountTable
+                SET 
+                    AccountNumber = COALESCE(NULLIF(@acc, ''), AccountNumber),
+                    Balance       = @bal,
+                    Active        = @act,
+                    UserID        = (SELECT UserID FROM UserTable WHERE Handle = @handle)
+                WHERE AccountID = @id;
             ";
+
+            cmd.Parameters.AddWithValue("@acc", req.AccountNumber);
+            cmd.Parameters.AddWithValue("@bal", req.Balance);
+            cmd.Parameters.AddWithValue("@act", req.Active ? 1 : 0);
+            cmd.Parameters.AddWithValue("@handle", req.Handle);
+            cmd.Parameters.AddWithValue("@id", req.AccountID);
 
             try
             {
-            conn.Open();
-            using (SQLiteCommand command = new SQLiteCommand(sql, conn))
-            {
-                command.Parameters.AddWithValue("@AccountNumberToDelete", accountNumber);
-
-                int rowsAffected = command.ExecuteNonQuery();
-
-                return rowsAffected == 1;
-            }
+                int rows = cmd.ExecuteNonQuery();
+                return rows > 0;
             }
             catch (SQLiteException ex)
-            {
-                Console.WriteLine($"SQLite Error deleting account by accountNumber '{accountNumber}': {ex.Message}");
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"General Error deleting account by accountNumber '{accountNumber}': {ex.Message}");
+            { 
                 return false;
             }
         }
+
+
     }
 }
