@@ -1,5 +1,4 @@
 ﻿using BankDataAPI.Data;
-using BusinessLayerAPI.Models;
 using RequestsResponses;
 
 using Microsoft.AspNetCore.Http;

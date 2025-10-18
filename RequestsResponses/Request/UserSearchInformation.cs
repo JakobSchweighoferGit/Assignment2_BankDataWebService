@@ -1,4 +1,4 @@
-﻿namespace BusinessLayerAPI.Models
+﻿namespace RequestsResponses
 {
     public class UserSearchInformation
     {

@@ -5,8 +5,8 @@ using Newtonsoft.Json;
 using PresentationLayerAPI.Models.Request;
 using PresentationLayerAPI.Models.Response;
 using RequestsResponses;
-
 using RestSharp;
+using UserSearchInformation = RequestsResponses.UserSearchInformation;
 
 namespace PresentationLayerAPI.Controllers
 {
