@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PresentationLayerAPI.Models.Request;
 using PresentationLayerAPI.Models.Response;
+using RequestsResponses;
+
 using RestSharp;
 
 namespace PresentationLayerAPI.Controllers
@@ -21,7 +23,7 @@ namespace PresentationLayerAPI.Controllers
 
                 RestClient client = new RestClient("http://localhost:5295");
                 RestRequest request = new RestRequest("/api/GetUserinformationByHandle", Method.Get);
-                request.AddJsonBody(new GetUserInformationRequest { Handle = handle });
+                request.AddJsonBody(new GetUserInformationRequestHandle { Handle = handle });
                 RestResponse response = client.Execute(request);
                 GetUserInformationResponse userInformation = JsonConvert.DeserializeObject<GetUserInformationResponse>(response.Content);
                 return PartialView("~/Views/Admin/AdminInformation.cshtml", userInformation);

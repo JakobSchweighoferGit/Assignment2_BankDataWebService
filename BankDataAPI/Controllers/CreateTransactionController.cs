@@ -1,7 +1,7 @@
 ﻿using BankDataAPI.Data;
 using BusinessLayerAPI.Data;
-using BusinessLayerAPI.Models.Request;
 using Microsoft.AspNetCore.Mvc;
+using RequestsResponses;
 
 namespace BusinessLayerAPI.Controllers
 {

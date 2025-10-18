@@ -7,8 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\User\UserDashboard.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Views\User\UserDashboard.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="RestSharp" Version="112.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RequestsResponses\RequestsResponses.csproj" />
   </ItemGroup>
 
 </Project>

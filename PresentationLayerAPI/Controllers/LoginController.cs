@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Newtonsoft.Json;
+using RequestsResponses;
+
 using PresentationLayerAPI.Models.Request;
 using PresentationLayerAPI.Models.Response;
 using RestSharp;

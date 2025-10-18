@@ -1,0 +1,1 @@
+Handle: SuperAdmin, First Name: System, Last Name: Administrator, Email: admin@bankapi.com, Password: AdminPassword123, Address: 123 Main St, Phone: 555-1212, PicturePath: 

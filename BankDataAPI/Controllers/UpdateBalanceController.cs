@@ -1,5 +1,5 @@
 ﻿using BusinessLayerAPI.Data;
-using BusinessLayerAPI.Models.Request;
+using RequestsResponses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BusinessLayerAPI.Controllers

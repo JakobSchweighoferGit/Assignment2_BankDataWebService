@@ -1,14 +1,20 @@
 ﻿using System.Data.SQLite;
 using System.Reflection.Metadata;
 using BusinessLayerAPI.Models;
-using BusinessLayerAPI.Models.Request;
-using BusinessLayerAPI.Models.Response;
+using RequestsResponses;
+
 
 namespace BankDataAPI.Data
 {
     public class UserProfileManagement
     {
         private static string connectionString = "Data Source=mydatabase.db;Version=3;";
+
+        private static readonly string ReportDirectory = "SeedReports";
+
+        private static readonly string UserFilePath = Path.Combine(ReportDirectory, "UserList.txt");
+        private static readonly string AccountFilePath = Path.Combine(ReportDirectory, "AccountList.txt");
+        private static readonly string AdminFilePath = Path.Combine(ReportDirectory, "AdminList.txt");
 
         public static UserDetailsResponse? DataGetUserByHandle(string handle)
         {

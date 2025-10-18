@@ -1,4 +1,4 @@
-﻿using BusinessLayerAPI.Models.Request;
+﻿using RequestsResponses;
 using System.CodeDom;
 
 namespace BusinessLayerAPI.Data
@@ -208,7 +208,7 @@ namespace BusinessLayerAPI.Data
                 GenRandomFirstName() + "Handle", //handle
                 GenRandomFirstName(), //firstname
                 GenRandomLastName(), //lastname
-                GenRandomFirstName() + rnd.Next(0, 100) + "@RealMail.com", //email
+                GenRandomFirstName() + rnd.Next(0, 1000000) + "@RealMail.com", //email
                 GenRandomLastName() + "123", //password
                 GenRandomAddress(), //address
                 GenRandomPhoneNum(), //phone

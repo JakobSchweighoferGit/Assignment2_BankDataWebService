@@ -1,4 +1,4 @@
-﻿namespace PresentationLayerAPI.Models.Request
+﻿namespace RequestsResponses
 {
     public class GetBankAccountinformationRequest
     {

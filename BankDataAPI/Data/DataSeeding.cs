@@ -1,5 +1,5 @@
 ﻿using BusinessLayerAPI.Data;
-using BusinessLayerAPI.Models.Request;
+using RequestsResponses;
 using System.Data.SQLite;
 
 namespace BankDataAPI.Data
@@ -22,6 +22,8 @@ namespace BankDataAPI.Data
 
         private static readonly string UserFilePath = Path.Combine(ReportDirectory, "UserList.txt");
         private static readonly string AccountFilePath = Path.Combine(ReportDirectory, "AccountList.txt");
+        private static readonly string AdminFilePath = Path.Combine(ReportDirectory, "AdminList.txt");
+
 
         public static Random rand = Random.Shared;
 
@@ -167,7 +169,7 @@ namespace BankDataAPI.Data
                 }
 
                 EnsureReportDirectoryExists();
-                File.WriteAllText(UserFilePath, string.Empty);
+                var userReportLines = new List<string>();
 
 
                 const string insertSql = @"
@@ -210,11 +212,13 @@ namespace BankDataAPI.Data
                         String contents = $"Handle: {user.Handle}, First Name: {user.FirstName}, Last Name: {user.LastName}, " +
                                           $"Email: {user.Email}, Password: {user.Password}, Address: {user.Address}, Phone: {user.Phone}, PicturePath: {user.PicturePath}";
 
-                        WriteToFile(UserFilePath, contents);
+                        userReportLines.Add(contents);
 
                         totalInserted += insertCommand.ExecuteNonQuery();
                     }
                 }
+                File.WriteAllLines(UserFilePath, userReportLines);
+
                 Console.WriteLine($"{totalInserted} Test Users Inserted.");
             }
             catch (Exception ex)
@@ -246,7 +250,7 @@ namespace BankDataAPI.Data
                 }
 
                 EnsureReportDirectoryExists();
-                File.WriteAllText(AccountFilePath, string.Empty);
+                var acctReportLines= new List<string>();
 
                 const string insertSql = @"
                 INSERT INTO AccountTable 
@@ -275,9 +279,12 @@ namespace BankDataAPI.Data
 
                         String contents = $"Account Number: {acctNumber}, Balance: {balance}$, UserID: {userId}";
 
-                        WriteToFile(AccountFilePath, contents);
+                        acctReportLines.Add(contents);
                     }
                 }
+
+                File.WriteAllLines(AccountFilePath, acctReportLines);
+
                 Console.WriteLine($" {totalInserted} Accounts Inserted.");
             }
             catch (Exception ex)
@@ -337,6 +344,8 @@ namespace BankDataAPI.Data
                         insertCommand.Parameters["@UserID"].Value = link.UserId;
 
                         totalInserted += insertCommand.ExecuteNonQuery();
+
+
                     }
                 }
                 Console.WriteLine($"{totalInserted} Transactions Inserted.");
@@ -360,6 +369,10 @@ namespace BankDataAPI.Data
                     Console.WriteLine("Admin user already exists. Skipping admin seed.");
                     return;
                 }
+
+                EnsureReportDirectoryExists();
+                var adminReportLines = new List<string>();
+
 
                 var adminUser = new
                 {
@@ -396,10 +409,16 @@ namespace BankDataAPI.Data
 
                     insertCommand.Parameters.Add("@Admin", System.Data.DbType.Boolean).Value = true;
 
+                    String contents = $"Handle: {adminUser.Handle}, First Name: {adminUser.FirstName}, Last Name: {adminUser.LastName}, " +
+                                           $"Email: {adminUser.Email}, Password: {adminUser.Password}, Address: {adminUser.Address}, Phone: {adminUser.Phone}, PicturePath: {adminUser.PicturePath}";
+
+                    adminReportLines.Add(contents);
                     totalInserted = insertCommand.ExecuteNonQuery();
 
-                }
 
+
+                }
+                File.WriteAllLines(AdminFilePath, adminReportLines);
                 Console.WriteLine($"{totalInserted} Admin User (Handle: {adminUser.Handle}) Inserted.");
             }
             catch (Exception ex)

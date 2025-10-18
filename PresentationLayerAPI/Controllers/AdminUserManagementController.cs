@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PresentationLayerAPI.Models.Request;
 using PresentationLayerAPI.Models.Response;
+using RequestsResponses;
+
 using RestSharp;
 
 namespace PresentationLayerAPI.Controllers
@@ -38,7 +40,7 @@ namespace PresentationLayerAPI.Controllers
 
 
         [HttpPost("adminUserEditInformation")]
-        public IActionResult GetUserinformation([FromBody] GetUserInformationRequest data)
+        public IActionResult GetUserinformation([FromBody] GetUserInformationRequestHandle data)
         {
             try
             {

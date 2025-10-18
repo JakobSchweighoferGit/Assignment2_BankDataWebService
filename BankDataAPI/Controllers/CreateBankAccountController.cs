@@ -1,6 +1,6 @@
 ﻿using BankDataAPI.Data;
 using BusinessLayerAPI.Data;
-using BusinessLayerAPI.Models.Request;
+using RequestsResponses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +25,7 @@ namespace BusinessLayerAPI.Controllers
                 return BadRequest(new { success = false, message = "User (handle) not found" });
             }
 
-            var newId = AccountManagement.InsertAccount(req.AccountNumber, req.Balance, user.UserID, req.Active);
+            var newId = AccountManagement.InsertAccount(req.AccountNumber, req.Balance, user.UserID);
 
             if (newId == null)
             {

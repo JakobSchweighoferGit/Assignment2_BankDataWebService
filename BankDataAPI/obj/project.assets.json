@@ -389,6 +389,16 @@
             "rid": "win"
           }
         }
+      },
+      "RequestsResponses/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/RequestsResponses.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RequestsResponses.dll": {}
+        }
       }
     }
   },
@@ -1207,10 +1217,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "RequestsResponses/1.0.0": {
+      "type": "project",
+      "path": "../RequestsResponses/RequestsResponses.csproj",
+      "msbuildProject": "../RequestsResponses/RequestsResponses.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "RequestsResponses >= 1.0.0",
       "System.Data.SQLite >= 1.0.118"
     ]
   },
@@ -1244,7 +1260,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\jaspe\\Source\\Repos\\Assignment2_BankDataWebService\\RequestsResponses\\RequestsResponses.csproj": {
+              "projectPath": "C:\\Users\\jaspe\\Source\\Repos\\Assignment2_BankDataWebService\\RequestsResponses\\RequestsResponses.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

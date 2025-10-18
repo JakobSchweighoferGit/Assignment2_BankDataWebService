@@ -1,6 +1,5 @@
 ﻿using BankDataAPI.Data;
-using BusinessLayerAPI.Models.Request;
-using BusinessLayerAPI.Models.Response;
+using RequestsResponses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

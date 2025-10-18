@@ -1,5 +1,6 @@
 ﻿using System.Data.SQLite;
-using BusinessLayerAPI.Models.Request;
+using BankDataAPI.Data;
+using RequestsResponses;
 
 namespace BusinessLayerAPI.Data
 {
@@ -7,29 +8,43 @@ namespace BusinessLayerAPI.Data
     {
         private static readonly string connectionString = "Data Source=mydatabase.db;Version=3;";
 
-        public static bool InsertAccount(string accountNumber, int balance, int userId, bool active)
+        private static readonly string ReportDirectory = "SeedReports";
+
+        private static readonly string UserFilePath = Path.Combine(ReportDirectory, "UserList.txt");
+        private static readonly string AccountFilePath = Path.Combine(ReportDirectory, "AccountList.txt");
+        private static readonly string AdminFilePath = Path.Combine(ReportDirectory, "AdminList.txt");
+        public static bool InsertAccount(string accountNumber, int balance, int userId)
         {
             using var conn = new SQLiteConnection(connectionString);
             conn.Open();
 
+
             using var cmd = conn.CreateCommand();
             cmd.CommandText = @"
-            INSERT INTO AccountTable (AccountNumber, Balance, UserID, Active)
+            INSERT INTO AccountTable (AccountNumber, Balance, UserID)
             VALUES (@acc, @bal, @uid, @act);";
             cmd.Parameters.AddWithValue("@acc", accountNumber);
             cmd.Parameters.AddWithValue("@bal", balance);
             cmd.Parameters.AddWithValue("@uid", userId);
-            cmd.Parameters.AddWithValue("@act", active ? 1 : 0);
+         
 
+            String contents = $"Account Number: {accountNumber}, Balance: {balance}$, UserID: {userId}";
             try
             {
-                return cmd.ExecuteNonQuery() > 0;
+                if( cmd.ExecuteNonQuery() > 0)
+                {
+
+                    DataSeeding.WriteToFile(AccountFilePath, contents);
+                    return true;
+                }
             }
             catch (SQLiteException ex)
             {
                 Console.WriteLine("InsertBankaccount error: " + ex.Message);
                 return false;
             }
+
+            return false;
         }
 
         public static (int AccountID, string AccountNumber, int Balance, bool Active, int UserID, string Handle)? GetAccountById(int id)
