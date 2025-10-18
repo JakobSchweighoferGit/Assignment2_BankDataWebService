@@ -156,5 +156,84 @@ namespace BankDataAPI.Data
                 return false;
             }
         }
+
+        public static bool DeleteUserByHandle(string handle)
+        {
+            if (string.IsNullOrWhiteSpace(handle))
+            {
+           
+                return false;
+            }
+
+            const string sql = @"
+                DELETE FROM UserTable
+                WHERE Handle = @HandleToDelete;
+            ";
+
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@HandleToDelete", handle);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        return rowsAffected == 1;
+                    }
+                }
+                catch (SQLiteException ex)
+                {
+                    Console.WriteLine($"SQLite Error deleting user by handle '{handle}': {ex.Message}");
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Error deleting user by handle '{handle}': {ex.Message}");
+                    return false;
+                }
+            }
+        }
+
+        public static bool DeleteUserByEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return false;
+            }
+
+            const string sql = @"
+                DELETE FROM UserTable
+                WHERE Email = @EmailToDelete;
+            ";
+
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@EmailToDelete", email);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        return rowsAffected == 1;
+                    }
+                }
+                catch (SQLiteException ex)
+                {
+                    Console.WriteLine($"SQLite Error deleting user by email '{email}': {ex.Message}");
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Error deleting user by email '{email}': {ex.Message}");
+                    return false;
+                }
+            }
+        }
     }
 }

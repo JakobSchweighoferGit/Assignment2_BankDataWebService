@@ -51,7 +51,7 @@ namespace BankDataAPI.Data
                         CREATE TABLE IF NOT EXISTS TransactionTable (
                             TransactionID INTEGER PRIMARY KEY AUTOINCREMENT,
                             Date          TEXT        NOT NULL DEFAULT (datetime('now')),
-                            Amount   INTEGER     NOT NULL,
+                            Amount        INTEGER     NOT NULL,
                             Type          TEXT        NOT NULL,
                             Success       BOOLEAN     NOT NULL DEFAULT 1,
                             AccountID     INTEGER     NOT NULL,
@@ -63,6 +63,7 @@ namespace BankDataAPI.Data
                                 ON UPDATE CASCADE
                                 ON DELETE SET NULL
                         )";
+
                         command.ExecuteNonQuery();
 
                         connection.Close();

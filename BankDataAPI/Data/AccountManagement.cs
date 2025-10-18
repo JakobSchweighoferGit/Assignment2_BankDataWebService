@@ -30,5 +30,39 @@ namespace BusinessLayerAPI.Data
                 return false;
             }
         }
+
+
+        public static bool DeleteAccount(string accountNumber)
+        {
+            using var conn = new SQLiteConnection(connectionString);
+
+            const string sql = @"
+                DELETE FROM AccountTable
+                WHERE AccountNumber = @AccountNumberToDelete;
+            ";
+
+            try
+            {
+            conn.Open();
+            using (SQLiteCommand command = new SQLiteCommand(sql, conn))
+            {
+                command.Parameters.AddWithValue("@AccountNumberToDelete", accountNumber);
+
+                int rowsAffected = command.ExecuteNonQuery();
+
+                return rowsAffected == 1;
+            }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine($"SQLite Error deleting account by accountNumber '{accountNumber}': {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"General Error deleting account by accountNumber '{accountNumber}': {ex.Message}");
+                return false;
+            }
+        }
     }
 }
