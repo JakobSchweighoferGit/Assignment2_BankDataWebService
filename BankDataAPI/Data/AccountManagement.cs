@@ -22,7 +22,7 @@ namespace BusinessLayerAPI.Data
             using var cmd = conn.CreateCommand();
             cmd.CommandText = @"
             INSERT INTO AccountTable (AccountNumber, Balance, UserID)
-            VALUES (@acc, @bal, @uid, @act);";
+            VALUES (@acc, @bal, @uid);";
             cmd.Parameters.AddWithValue("@acc", accountNumber);
             cmd.Parameters.AddWithValue("@bal", balance);
             cmd.Parameters.AddWithValue("@uid", userId);
@@ -53,12 +53,12 @@ namespace BusinessLayerAPI.Data
             conn.Open();
 
             using var cmd = conn.CreateCommand();
+            //a.Active,
             cmd.CommandText = @"
                 SELECT 
                     a.AccountID,
                     a.AccountNumber,
                     a.Balance,
-                    a.Active,
                     a.UserID,
                     u.Handle
                 FROM AccountTable a
@@ -74,7 +74,7 @@ namespace BusinessLayerAPI.Data
                 Convert.ToInt32(r["AccountID"]),
                 Convert.ToString(r["AccountNumber"]) ?? "",
                 Convert.ToInt32(r["Balance"]),
-                Convert.ToBoolean(r["Active"]),
+                true,
                 Convert.ToInt32(r["UserID"]),
                 Convert.ToString(r["Handle"]) ?? ""
             );

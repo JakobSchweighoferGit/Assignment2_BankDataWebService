@@ -50,7 +50,7 @@ namespace BankDataAPI.Data
                         CREATE TABLE IF NOT EXISTS AccountTable (
                             AccountID     INTEGER PRIMARY KEY AUTOINCREMENT,
                             AccountNumber TEXT        NOT NULL UNIQUE,
-                            Balance  INTEGER     NOT NULL DEFAULT 0,
+                            Balance       INTEGER     NOT NULL DEFAULT 0,
                             UserID        INTEGER     NOT NULL,
                             FOREIGN KEY (UserID) REFERENCES UserTable(UserID)
                                 ON UPDATE CASCADE
